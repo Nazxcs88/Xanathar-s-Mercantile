@@ -606,13 +606,13 @@
         </div>
         <div class="grid md:grid-cols-3 gap-8">
           <div
-            class="relative bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/15 rounded-lg overflow-hidden hover:border-gold/40 transition-all duration-500 group"
+            class="relative flex flex-col bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/15 rounded-lg overflow-hidden hover:border-gold/40 transition-all duration-500 group"
             id="service-oneshot"
           >
             <div
               class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald to-emerald/50"
             ></div>
-            <div class="p-8 text-center">
+            <div class="p-8 text-center flex-1 flex flex-col">
               <div
                 class="w-16 h-16 mx-auto mb-5 rounded-full bg-emerald/20 border border-emerald/40 flex items-center justify-center text-2xl"
               >
@@ -641,14 +641,14 @@
                 </li>
               </ul>
               <button
-                class="w-full font-cinzel text-sm tracking-wider uppercase py-3 border border-emerald/50 text-emerald hover:bg-emerald/10 rounded transition-all"
+                class="mt-auto w-full font-cinzel text-sm tracking-wider uppercase py-3 border border-emerald/50 text-emerald hover:bg-emerald/10 rounded transition-all"
               >
                 Request Session
               </button>
             </div>
           </div>
           <div
-            class="relative bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/40 rounded-lg overflow-hidden hover:border-gold transition-all duration-500 group shadow-[0_0_40px_rgba(212,168,67,0.1)]"
+            class="relative flex flex-col bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/40 rounded-lg overflow-hidden hover:border-gold transition-all duration-500 group shadow-[0_0_40px_rgba(212,168,67,0.1)]"
             id="service-short"
           >
             <div
@@ -659,7 +659,7 @@
             >
               Popular
             </div>
-            <div class="p-8 text-center">
+            <div class="p-8 text-center flex-1 flex flex-col">
               <div
                 class="w-16 h-16 mx-auto mb-5 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center text-2xl"
               >
@@ -693,20 +693,20 @@
                 </li>
               </ul>
               <button
-                class="w-full font-cinzel text-sm tracking-wider uppercase py-3 bg-gold/90 text-guild-dark hover:bg-gold-bright rounded transition-all font-bold"
+                class="mt-auto w-full font-cinzel text-sm tracking-wider uppercase py-3 bg-gold/90 text-guild-dark hover:bg-gold-bright rounded transition-all font-bold"
               >
                 Book Campaign
               </button>
             </div>
           </div>
           <div
-            class="relative bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/15 rounded-lg overflow-hidden hover:border-gold/40 transition-all duration-500 group"
+            class="relative flex flex-col bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/15 rounded-lg overflow-hidden hover:border-gold/40 transition-all duration-500 group"
             id="service-full"
           >
             <div
               class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amethyst to-amethyst/50"
             ></div>
-            <div class="p-8 text-center">
+            <div class="p-8 text-center flex-1 flex flex-col">
               <div
                 class="w-16 h-16 mx-auto mb-5 rounded-full bg-amethyst/20 border border-amethyst/40 flex items-center justify-center text-2xl"
               >
@@ -742,7 +742,7 @@
                 </li>
               </ul>
               <button
-                class="w-full font-cinzel text-sm tracking-wider uppercase py-3 border border-amethyst/50 text-amethyst hover:bg-amethyst/10 rounded transition-all"
+                class="mt-auto w-full font-cinzel text-sm tracking-wider uppercase py-3 border border-amethyst/50 text-amethyst hover:bg-amethyst/10 rounded transition-all"
               >
                 Start Your Epic
               </button>
@@ -2201,28 +2201,28 @@
                   hp: 8 + fs * 3,
                   atk: 3 + fs,
                   color: "#4a7c4f",
-                  char: "g",
+                  char: "👺",
                 },
                 {
                   name: "Skeleton",
                   hp: 12 + fs * 4,
                   atk: 5 + fs,
                   color: "#c8c8c8",
-                  char: "s",
+                  char: "💀",
                 },
                 {
                   name: "Orc",
                   hp: 18 + fs * 5,
                   atk: 7 + fs * 2,
                   color: "#5a8a3c",
-                  char: "O",
+                  char: "👹",
                 },
                 {
                   name: "Wraith",
                   hp: 10 + fs * 3,
                   atk: 9 + fs * 2,
                   color: "#7b5ea7",
-                  char: "W",
+                  char: "👻",
                 },
               ];
               const t =
@@ -2456,15 +2456,15 @@
             ctx.globalAlpha = Math.max(0, 1 - md / 7);
             const mx = mon.x * TILE,
               my = mon.y * TILE;
-            ctx.fillStyle = mon.hit > 0 ? "#ff4444" : mon.color;
+            ctx.fillStyle = mon.hit > 0 ? "#ff4444" : "#1a1a1a";
             ctx.beginPath();
-            ctx.arc(mx + TILE / 2, my + TILE / 2, TILE / 2 - 3, 0, Math.PI * 2);
+            ctx.arc(mx + TILE / 2, my + TILE / 2, TILE / 2 - 2, 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = "#fff";
-            ctx.font = "bold 16px monospace";
+            ctx.font = "20px serif";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            ctx.fillText(mon.char, mx + TILE / 2, my + TILE / 2);
+            ctx.fillText(mon.char, mx + TILE / 2, my + TILE / 2 + 1);
             if (mon.hp < mon.maxHp) {
               const hp = mon.hp / mon.maxHp;
               ctx.fillStyle = "rgba(0,0,0,0.6)";
