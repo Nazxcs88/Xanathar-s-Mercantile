@@ -1,0 +1,18 @@
+
+INSTRUCTIONS:
+
+●	Your goal for this activity is to create a website for a client, in ANY BUSINESS SECTOR. 
+
+●	You have the freedom to come up with a name for a business, and a logo (you can do this with AI or Canva). 
+
+●	Your website should list the following information shown below. No need to state the following questions on the website, but please ensure that the answers to these questions are present on the website. 
+○	What makes the business stand out?
+○	What services are offered by the business?
+○	What’s the mission and vision of the business?
+○	What are the frequently asked questions about the business? 
+
+●	Challenge yourself by including a simple INTERACTIVE 2D GAME on the website USING VANILLA JAVASCRIPT, NO LIBRARIES. For example, if your business is in the aerospace industry, you can feature a SPACE INVADERS game on the website. If your chosen business is a fast food restaurant, you can create a game with a character that catches falling ingredients (buns, patties, lettuce). You can vibe code your way into this. 
+
+●	Please keep in mind that the website layout should be DONE IN TAILWIND. The goal of this activity is for you to get hold of Tailwind fundamentals, so everything should be written from scratch and don’t use pre-made templates. You can look for Tailwind components on Flowbite (https://flowbite.com/docs/getting-started/introduction/)
+○	Just refer to this website for the Tailwind equivalents of all CSS properties. 
+■	https://www.creative-tim.com/twcomponents/cheatsheet

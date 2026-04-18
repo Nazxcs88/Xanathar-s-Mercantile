@@ -1,0 +1,31 @@
+CHOSEN BUSINESS SECTOR:
+Entertainment
+
+Businees name:
+Xanathar's mercantile
+
+logo: head of a beholder
+
+CHOSEN BUSINESS:
+A TTRPG store sellings dices, rulebooks, and ttrpg games. also provides dungeon mastering services
+
+What makes the business stand out?
+it has a fantasy theme like a thieves guild
+
+What services are offered by the business?
+- sells dices, ttrpg books, miniatures, and ttrpg accessories like dice tower and dice tray
+- the website also has a player character creator for dungeons and dragon use official rules
+- Dungeon master services with options, like one shot, short campaign, or a full campaign.
+
+What’s the mission and vision of the business?
+to spread the wonders of imagination
+
+What are the frequently asked questions about the business? 
+- is dungeons and dragon satanic? no, it is a stupid stigma in the 90s
+- isn't roleplaying weird and cringe? hey! don't be rude to each to their own, and no you don't have to roleplay to play dnd everyone has their own playstyle.
+- is d&d hard and expensive? well not really, the rules can be quite confusing, but you can basically ignore them, the main point of d&d is using your imagination. is it expensive?, not at all all you really need is a dice, pen & paper, and your imagination.
+- how do i start playing d&d? we actually offer session services on our website just head onto this link to see our options (link)
+
+Game:
+A simple 2d dungeon crawler game where the player controls a character and explores a dungeon. The player can fight monsters and collect treasure. The game is played in real-time and the player can move the character in four directions.
+built using only javascript, html, and tailwind css.

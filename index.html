@@ -1,0 +1,2736 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xanathar's Mercantile — Purveyors of Fine Adventuring Goods</title>
+    <meta
+      name="description"
+      content="Xanathar's Mercantile: A TTRPG store disguised as a fantasy Thieves Guild. Dice, rulebooks, miniatures, DM services, and a free Character Creator."
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/tailwindcss">
+      @theme {
+        --color-parchment: #f5e6c8;
+        --color-parchment-dark: #e8d5a8;
+        --color-guild-dark: #0d0d0d;
+        --color-guild-deeper: #1a1a2e;
+        --color-guild-shadow: #16213e;
+        --color-guild-mid: #1f2937;
+        --color-gold: #d4a843;
+        --color-gold-bright: #f0c75e;
+        --color-gold-dim: #a07d2e;
+        --color-blood: #8b1a1a;
+        --color-blood-glow: #c0392b;
+        --color-emerald: #2d6a4f;
+        --color-amethyst: #7b2d8b;
+        --font-cinzel: "Cinzel", serif;
+        --font-crimson: "Crimson Text", serif;
+        --font-inter: "Inter", sans-serif;
+      }
+    </style>
+    <style>
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes pulse-gold {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 8px rgba(212, 168, 67, 0.4));
+        }
+        50% {
+          filter: drop-shadow(0 0 20px rgba(212, 168, 67, 0.8));
+        }
+      }
+      @keyframes eye-glow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 6px rgba(139, 26, 26, 0.6));
+        }
+        50% {
+          filter: drop-shadow(0 0 18px rgba(192, 57, 43, 1));
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fishSwim {
+        0% {
+          transform: translateX(0) scaleX(-1);
+        }
+        45% {
+          transform: translateX(30px) scaleX(-1);
+        }
+        50% {
+          transform: translateX(30px) scaleX(1);
+        }
+        95% {
+          transform: translateX(-30px) scaleX(1);
+        }
+        100% {
+          transform: translateX(0) scaleX(-1);
+        }
+      }
+      @keyframes bubble {
+        0% {
+          opacity: 0.7;
+          transform: translateY(0) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-40px) scale(0.3);
+        }
+      }
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+      .animate-pulse-gold {
+        animation: pulse-gold 3s ease-in-out infinite;
+      }
+      .animate-eye-glow {
+        animation: eye-glow 2.5s ease-in-out infinite;
+      }
+      .faq-answer {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.4s ease;
+      }
+      .faq-answer.open {
+        max-height: 300px;
+        opacity: 1;
+      }
+      .fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+      .fish-swim {
+        animation: fishSwim 6s ease-in-out infinite;
+      }
+      #gameCanvas {
+        image-rendering: pixelated;
+      }
+    </style>
+  </head>
+  <body class="bg-guild-dark text-parchment font-crimson">
+    <!-- ==================== HEADER / NAV ==================== -->
+    <header
+      id="header"
+      class="fixed top-0 left-0 right-0 z-50 bg-guild-dark/95 backdrop-blur-md border-b border-gold/20 transition-all duration-300"
+    >
+      <nav
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20"
+      >
+        <a href="#hero" class="flex items-center gap-3 group" id="logo-link">
+          <img
+            src="assests/logo.png"
+            alt="Xanathar's Mercantile Logo"
+            class="w-10 h-10 sm:w-12 sm:h-12 rounded-full animate-pulse-gold object-cover"
+          />
+          <span
+            class="font-cinzel text-gold font-bold text-lg sm:text-xl tracking-wider group-hover:text-gold-bright transition-colors"
+            >Xanathar's</span
+          >
+        </a>
+        <ul
+          class="hidden md:flex items-center gap-8 font-cinzel text-sm tracking-widest"
+        >
+          <li>
+            <a
+              href="#about"
+              class="text-parchment/70 hover:text-gold transition-colors"
+              id="nav-about"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#store"
+              class="text-parchment/70 hover:text-gold transition-colors"
+              id="nav-store"
+              >Wares</a
+            >
+          </li>
+          <li>
+            <a
+              href="#services"
+              class="text-parchment/70 hover:text-gold transition-colors"
+              id="nav-services"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="#creator"
+              class="text-parchment/70 hover:text-gold transition-colors"
+              id="nav-creator"
+              >Creator</a
+            >
+          </li>
+          <li>
+            <a
+              href="#game"
+              class="text-parchment/70 hover:text-gold transition-colors"
+              id="nav-game"
+              >Dungeon</a
+            >
+          </li>
+          <li>
+            <a
+              href="#faq"
+              class="text-parchment/70 hover:text-gold transition-colors"
+              id="nav-faq"
+              >FAQ</a
+            >
+          </li>
+        </ul>
+        <!-- Cart Icon -->
+        <div class="flex items-center gap-3">
+          <button
+            id="cart-toggle-btn"
+            onclick="toggleCart()"
+            class="relative text-gold hover:text-gold-bright transition-colors p-2"
+            aria-label="Shopping Cart"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+              />
+            </svg>
+            <span
+              id="cart-count"
+              class="absolute -top-1 -right-1 bg-blood-glow text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden"
+              >0</span
+            >
+          </button>
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden text-gold p-2 hover:text-gold-bright transition-colors"
+            aria-label="Open menu"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-guild-deeper/98 border-t border-gold/10"
+      >
+        <ul
+          class="flex flex-col py-4 px-6 gap-4 font-cinzel text-sm tracking-widest"
+        >
+          <li>
+            <a
+              href="#about"
+              class="text-parchment/70 hover:text-gold transition-colors block py-1"
+              onclick="closeMobileMenu()"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#store"
+              class="text-parchment/70 hover:text-gold transition-colors block py-1"
+              onclick="closeMobileMenu()"
+              >Wares</a
+            >
+          </li>
+          <li>
+            <a
+              href="#services"
+              class="text-parchment/70 hover:text-gold transition-colors block py-1"
+              onclick="closeMobileMenu()"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="#creator"
+              class="text-parchment/70 hover:text-gold transition-colors block py-1"
+              onclick="closeMobileMenu()"
+              >Creator</a
+            >
+          </li>
+          <li>
+            <a
+              href="#game"
+              class="text-parchment/70 hover:text-gold transition-colors block py-1"
+              onclick="closeMobileMenu()"
+              >Dungeon</a
+            >
+          </li>
+          <li>
+            <a
+              href="#faq"
+              class="text-parchment/70 hover:text-gold transition-colors block py-1"
+              onclick="closeMobileMenu()"
+              >FAQ</a
+            >
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ==================== CART SIDEBAR ==================== -->
+    <div
+      id="cart-sidebar"
+      class="fixed top-0 right-0 w-full sm:w-96 h-full bg-guild-deeper border-l border-gold/20 z-[60] translate-x-full transition-transform duration-300 flex flex-col"
+    >
+      <div
+        class="flex items-center justify-between px-6 py-4 border-b border-gold/15"
+      >
+        <h3 class="font-cinzel text-gold text-lg tracking-wider">
+          Your Bag of Holding
+        </h3>
+        <button
+          onclick="toggleCart()"
+          class="text-parchment/50 hover:text-gold text-2xl"
+        >
+          &times;
+        </button>
+      </div>
+      <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+      <div class="border-t border-gold/15 p-6">
+        <div class="flex justify-between font-cinzel text-lg mb-4">
+          <span class="text-parchment/70">Total:</span>
+          <span class="text-gold font-bold" id="cart-total">₱0</span>
+        </div>
+        <button
+          class="w-full font-cinzel text-sm tracking-wider uppercase py-3 bg-gold/90 text-guild-dark hover:bg-gold-bright rounded transition-all font-bold"
+        >
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+    <div
+      id="cart-overlay"
+      class="fixed inset-0 bg-black/50 z-[55] hidden"
+      onclick="toggleCart()"
+    ></div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section
+      id="hero"
+      class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-guild-dark via-guild-deeper to-guild-dark"
+      ></div>
+      <div
+        class="absolute inset-0 opacity-10"
+        style="
+          background-image:
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 50px,
+              rgba(212, 168, 67, 0.03) 50px,
+              rgba(212, 168, 67, 0.03) 51px
+            ),
+            repeating-linear-gradient(
+              90deg,
+              transparent,
+              transparent 50px,
+              rgba(212, 168, 67, 0.03) 50px,
+              rgba(212, 168, 67, 0.03) 51px
+            );
+        "
+      ></div>
+      <div
+        class="absolute top-1/4 left-1/4 w-1 h-1 bg-gold/40 rounded-full animate-float"
+      ></div>
+      <div
+        class="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-gold/30 rounded-full animate-float"
+        style="animation-delay: 1s"
+      ></div>
+      <div
+        class="absolute bottom-1/3 left-1/3 w-1 h-1 bg-gold/20 rounded-full animate-float"
+        style="animation-delay: 2s"
+      ></div>
+
+      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <div class="mb-8 flex justify-center animate-eye-glow">
+          <img
+            src="assests/logo.png"
+            alt="Xanathar"
+            class="w-36 h-36 sm:w-48 sm:h-48 rounded-full object-cover border-2 border-gold/40 shadow-[0_0_40px_rgba(212,168,67,0.3)]"
+          />
+        </div>
+        <h1
+          class="font-cinzel text-5xl sm:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gold-dim via-gold-bright to-gold-dim tracking-wide mb-4 leading-tight"
+        >
+          Xanathar's<br />Mercantile
+        </h1>
+        <div
+          class="w-32 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto my-6"
+        ></div>
+        <p
+          class="font-crimson text-xl sm:text-2xl text-parchment/80 italic max-w-xl mx-auto mb-8 leading-relaxed"
+        >
+          "To spread the wonders of imagination."
+        </p>
+        <p
+          class="font-inter text-sm sm:text-base text-parchment/50 tracking-widest uppercase mb-10"
+        >
+          Purveyors of Fine Adventuring Goods & Services
+        </p>
+        <a
+          href="#about"
+          class="inline-block font-cinzel text-sm tracking-[0.2em] uppercase px-8 py-3 border-2 border-gold/60 text-gold hover:bg-gold/10 hover:border-gold hover:shadow-[0_0_20px_rgba(212,168,67,0.3)] transition-all duration-300 rounded-sm"
+          id="hero-cta"
+        >
+          Enter the Guild
+        </a>
+      </div>
+      <div
+        class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-guild-dark to-transparent"
+      ></div>
+    </section>
+
+    <!-- ==================== ABOUT / XANATHAR'S WORDS ==================== -->
+    <section id="about" class="relative py-24 sm:py-32">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p
+            class="font-cinzel text-gold text-sm tracking-[0.3em] uppercase mb-3"
+          >
+            A Word from the Guildmaster
+          </p>
+          <h2
+            class="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment mb-6"
+          >
+            Welcome to <span class="text-gold">My Domain</span>
+          </h2>
+          <div
+            class="w-24 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-8"
+          ></div>
+          <p class="text-parchment/60 italic max-w-2xl mx-auto text-lg">
+            "You should feel honored. Most who enter my lair uninvited don't
+            leave with all their limbs. But you... you look like you have coin.
+            And taste. So I'll allow it."
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div
+            class="group relative bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/15 rounded-lg p-8 hover:border-gold/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,168,67,0.1)]"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+            ></div>
+            <div class="text-4xl mb-4">👁️</div>
+            <h3 class="font-cinzel text-xl text-gold font-semibold mb-3">
+              My Magnificent Lair
+            </h3>
+            <p class="text-parchment/70 leading-relaxed italic">
+              "I have spared no expense in crafting this establishment. Every
+              shadow, every flickering torch, every mysterious whisper — all
+              designed by ME, the great Xanathar. You will shop here and you
+              will enjoy it. My eye stalks are always watching, so don't even
+              think about stealing."
+            </p>
+          </div>
+          <div
+            class="group relative bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/15 rounded-lg p-8 hover:border-gold/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,168,67,0.1)]"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+            ></div>
+            <div class="text-4xl mb-4">🎲</div>
+            <h3 class="font-cinzel text-xl text-gold font-semibold mb-3">
+              Personally Curated Goods
+            </h3>
+            <p class="text-parchment/70 leading-relaxed italic">
+              "Every item in my inventory has been personally inspected by my
+              central eye. Inferior merchandise? Disintegrated. Only the finest
+              dice, the most exquisite books, and the most detailed miniatures
+              survive my quality standards. You're welcome."
+            </p>
+          </div>
+          <div
+            class="group relative bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/15 rounded-lg p-8 hover:border-gold/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,168,67,0.1)]"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+            ></div>
+            <div class="text-4xl mb-4">🐟</div>
+            <h3 class="font-cinzel text-xl text-gold font-semibold mb-3">
+              A Guild Like No Other
+            </h3>
+            <p class="text-parchment/70 leading-relaxed italic">
+              "My guild is the finest organization beneath Waterdeep. Join us
+              and you'll have access to game nights, campaigns, and resources
+              that lesser establishments can only dream of. Also, Sylgar
+              approves. That's my goldfish. She's very important. DO NOT upset
+              her."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== STORE / WARES ==================== -->
+    <section
+      id="store"
+      class="relative py-24 sm:py-32 bg-gradient-to-b from-guild-dark via-guild-deeper to-guild-dark"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p
+            class="font-cinzel text-gold text-sm tracking-[0.3em] uppercase mb-3"
+          >
+            The Guild's Wares
+          </p>
+          <h2
+            class="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment mb-6"
+          >
+            Browse Our <span class="text-gold">Inventory</span>
+          </h2>
+          <div
+            class="w-24 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-4"
+          ></div>
+          <p class="text-parchment/60 max-w-2xl mx-auto">
+            Everything an adventurer needs, from their first session to their
+            hundredth campaign.
+          </p>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="flex flex-wrap justify-center gap-2 mb-10">
+          <button
+            onclick="filterStore('all')"
+            class="store-tab font-cinzel text-xs tracking-wider px-4 py-2 border border-gold/30 text-gold rounded hover:bg-gold/10 transition-all bg-gold/15"
+            data-cat="all"
+          >
+            All
+          </button>
+          <button
+            onclick="filterStore('dice')"
+            class="store-tab font-cinzel text-xs tracking-wider px-4 py-2 border border-gold/30 text-parchment/50 rounded hover:bg-gold/10 transition-all"
+            data-cat="dice"
+          >
+            Dice
+          </button>
+          <button
+            onclick="filterStore('books')"
+            class="store-tab font-cinzel text-xs tracking-wider px-4 py-2 border border-gold/30 text-parchment/50 rounded hover:bg-gold/10 transition-all"
+            data-cat="books"
+          >
+            Books
+          </button>
+          <button
+            onclick="filterStore('miniatures')"
+            class="store-tab font-cinzel text-xs tracking-wider px-4 py-2 border border-gold/30 text-parchment/50 rounded hover:bg-gold/10 transition-all"
+            data-cat="miniatures"
+          >
+            Miniatures
+          </button>
+          <button
+            onclick="filterStore('accessories')"
+            class="store-tab font-cinzel text-xs tracking-wider px-4 py-2 border border-gold/30 text-parchment/50 rounded hover:bg-gold/10 transition-all"
+            data-cat="accessories"
+          >
+            Accessories
+          </button>
+        </div>
+
+        <div
+          class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          id="store-grid"
+        >
+          <!-- Products are rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section id="services" class="relative py-24 sm:py-32">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p
+            class="font-cinzel text-gold text-sm tracking-[0.3em] uppercase mb-3"
+          >
+            Guild Services
+          </p>
+          <h2
+            class="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment mb-6"
+          >
+            Dungeon Master <span class="text-gold">For Hire</span>
+          </h2>
+          <div
+            class="w-24 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-4"
+          ></div>
+          <p class="text-parchment/60 max-w-2xl mx-auto">
+            Let our experienced Dungeon Masters craft unforgettable adventures
+            for you and your party. Choose your commitment level.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            class="relative bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/15 rounded-lg overflow-hidden hover:border-gold/40 transition-all duration-500 group"
+            id="service-oneshot"
+          >
+            <div
+              class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald to-emerald/50"
+            ></div>
+            <div class="p-8 text-center">
+              <div
+                class="w-16 h-16 mx-auto mb-5 rounded-full bg-emerald/20 border border-emerald/40 flex items-center justify-center text-2xl"
+              >
+                ⚡
+              </div>
+              <h3 class="font-cinzel text-xl text-parchment font-bold mb-2">
+                One-Shot
+              </h3>
+              <p class="font-cinzel text-3xl text-gold font-black mb-1">₱500</p>
+              <p class="text-parchment/40 text-sm mb-6">per session</p>
+              <ul class="text-left text-parchment/70 text-sm space-y-3 mb-8">
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald mt-0.5">✦</span> Single session
+                  adventure (3–4 hours)
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald mt-0.5">✦</span> Pre-built or custom
+                  scenario
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald mt-0.5">✦</span> Perfect for
+                  beginners
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-emerald mt-0.5">✦</span> Up to 6 players
+                </li>
+              </ul>
+              <button
+                class="w-full font-cinzel text-sm tracking-wider uppercase py-3 border border-emerald/50 text-emerald hover:bg-emerald/10 rounded transition-all"
+              >
+                Request Session
+              </button>
+            </div>
+          </div>
+          <div
+            class="relative bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/40 rounded-lg overflow-hidden hover:border-gold transition-all duration-500 group shadow-[0_0_40px_rgba(212,168,67,0.1)]"
+            id="service-short"
+          >
+            <div
+              class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-dim via-gold-bright to-gold-dim"
+            ></div>
+            <div
+              class="absolute top-4 right-4 font-cinzel text-[10px] tracking-widest uppercase bg-gold/20 text-gold px-3 py-1 rounded-full border border-gold/30"
+            >
+              Popular
+            </div>
+            <div class="p-8 text-center">
+              <div
+                class="w-16 h-16 mx-auto mb-5 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center text-2xl"
+              >
+                🗡️
+              </div>
+              <h3 class="font-cinzel text-xl text-parchment font-bold mb-2">
+                Short Campaign
+              </h3>
+              <p class="font-cinzel text-3xl text-gold font-black mb-1">
+                ₱2,500
+              </p>
+              <p class="text-parchment/40 text-sm mb-6">4–6 sessions</p>
+              <ul class="text-left text-parchment/70 text-sm space-y-3 mb-8">
+                <li class="flex items-start gap-2">
+                  <span class="text-gold mt-0.5">✦</span> Multi-session story
+                  arc
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gold mt-0.5">✦</span> Character progression
+                  (Levels 1–5)
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gold mt-0.5">✦</span> Custom world-building
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gold mt-0.5">✦</span> Session notes & recaps
+                  provided
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gold mt-0.5">✦</span> Up to 6 players
+                </li>
+              </ul>
+              <button
+                class="w-full font-cinzel text-sm tracking-wider uppercase py-3 bg-gold/90 text-guild-dark hover:bg-gold-bright rounded transition-all font-bold"
+              >
+                Book Campaign
+              </button>
+            </div>
+          </div>
+          <div
+            class="relative bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/15 rounded-lg overflow-hidden hover:border-gold/40 transition-all duration-500 group"
+            id="service-full"
+          >
+            <div
+              class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amethyst to-amethyst/50"
+            ></div>
+            <div class="p-8 text-center">
+              <div
+                class="w-16 h-16 mx-auto mb-5 rounded-full bg-amethyst/20 border border-amethyst/40 flex items-center justify-center text-2xl"
+              >
+                👑
+              </div>
+              <h3 class="font-cinzel text-xl text-parchment font-bold mb-2">
+                Full Campaign
+              </h3>
+              <p class="font-cinzel text-3xl text-gold font-black mb-1">
+                ₱8,000
+              </p>
+              <p class="text-parchment/40 text-sm mb-6">12+ sessions</p>
+              <ul class="text-left text-parchment/70 text-sm space-y-3 mb-8">
+                <li class="flex items-start gap-2">
+                  <span class="text-amethyst mt-0.5">✦</span> Epic long-form
+                  narrative
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amethyst mt-0.5">✦</span> Character
+                  progression (Levels 1–20)
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amethyst mt-0.5">✦</span> Fully custom
+                  homebrew world
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amethyst mt-0.5">✦</span> Custom maps &
+                  handouts
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-amethyst mt-0.5">✦</span> Priority
+                  scheduling
+                </li>
+              </ul>
+              <button
+                class="w-full font-cinzel text-sm tracking-wider uppercase py-3 border border-amethyst/50 text-amethyst hover:bg-amethyst/10 rounded transition-all"
+              >
+                Start Your Epic
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CHARACTER CREATOR ==================== -->
+    <section
+      id="creator"
+      class="relative py-24 sm:py-32 bg-gradient-to-b from-guild-dark via-guild-deeper to-guild-dark"
+    >
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <p
+            class="font-cinzel text-gold text-sm tracking-[0.3em] uppercase mb-3"
+          >
+            Free Tool
+          </p>
+          <h2
+            class="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment mb-6"
+          >
+            Player Character <span class="text-gold">Creator</span>
+          </h2>
+          <div
+            class="w-24 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-4"
+          ></div>
+          <p class="text-parchment/60 max-w-2xl mx-auto">
+            Build your D&D character using official 2024 rules. Choose your
+            class, species, and background, then set your ability scores.
+          </p>
+        </div>
+        <div
+          class="bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/20 rounded-xl overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.5)]"
+        >
+          <div
+            class="bg-guild-deeper border-b border-gold/15 px-6 py-4 flex items-center gap-3"
+          >
+            <div class="w-3 h-3 rounded-full bg-blood"></div>
+            <div class="w-3 h-3 rounded-full bg-gold-dim"></div>
+            <div class="w-3 h-3 rounded-full bg-emerald"></div>
+            <span class="ml-3 font-cinzel text-gold/60 text-sm tracking-wider"
+              >Xanathar's Character Forge</span
+            >
+          </div>
+          <div class="p-6 sm:p-8">
+            <!-- Step indicators (3 steps now) -->
+            <div class="flex items-center justify-center gap-2 mb-8 flex-wrap">
+              <span
+                class="font-cinzel text-xs sm:text-sm px-3 py-1 rounded-full bg-gold/20 text-gold border border-gold/30"
+                id="step-indicator-1"
+                >1. Class</span
+              >
+              <span class="text-gold/30">→</span>
+              <span
+                class="font-cinzel text-xs sm:text-sm px-3 py-1 rounded-full text-parchment/40 border border-parchment/10"
+                id="step-indicator-2"
+                >2. Species</span
+              >
+              <span class="text-gold/30">→</span>
+              <span
+                class="font-cinzel text-xs sm:text-sm px-3 py-1 rounded-full text-parchment/40 border border-parchment/10"
+                id="step-indicator-3"
+                >3. Background</span
+              >
+            </div>
+            <!-- Character Name -->
+            <div class="mb-6">
+              <label
+                class="font-cinzel text-gold text-sm tracking-wider block mb-2"
+                >Character Name</label
+              >
+              <input
+                type="text"
+                id="char-name"
+                placeholder="Enter your character's name..."
+                class="w-full bg-guild-dark border border-gold/20 rounded px-4 py-3 text-parchment placeholder-parchment/30 focus:border-gold/50 focus:outline-none font-crimson text-lg transition-colors"
+              />
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              <div>
+                <label
+                  class="font-cinzel text-gold text-sm tracking-wider block mb-2"
+                  >Class</label
+                >
+                <select
+                  id="char-class"
+                  class="w-full bg-guild-dark border border-gold/20 rounded px-4 py-3 text-parchment focus:border-gold/50 focus:outline-none font-crimson transition-colors cursor-pointer"
+                >
+                  <option value="">— Select Class —</option>
+                  <option value="Barbarian">Barbarian — Battle</option>
+                  <option value="Bard">Bard — Performing</option>
+                  <option value="Cleric">Cleric — Gods</option>
+                  <option value="Druid">Druid — Nature</option>
+                  <option value="Fighter">Fighter — Weapons</option>
+                  <option value="Monk">Monk — Unarmed Combat</option>
+                  <option value="Paladin">Paladin — Defense</option>
+                  <option value="Ranger">Ranger — Survival</option>
+                  <option value="Rogue">Rogue — Stealth</option>
+                  <option value="Sorcerer">Sorcerer — Power</option>
+                  <option value="Warlock">Warlock — Occult Lore</option>
+                  <option value="Wizard">Wizard — Spellbooks</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  class="font-cinzel text-gold text-sm tracking-wider block mb-2"
+                  >Species</label
+                >
+                <select
+                  id="char-species"
+                  class="w-full bg-guild-dark border border-gold/20 rounded px-4 py-3 text-parchment focus:border-gold/50 focus:outline-none font-crimson transition-colors cursor-pointer"
+                >
+                  <option value="">— Select Species —</option>
+                  <option value="Aasimar">Aasimar</option>
+                  <option value="Dragonborn">Dragonborn</option>
+                  <option value="Dwarf">Dwarf</option>
+                  <option value="Elf">Elf</option>
+                  <option value="Gnome">Gnome</option>
+                  <option value="Goliath">Goliath</option>
+                  <option value="Halfling">Halfling</option>
+                  <option value="Human">Human</option>
+                  <option value="Orc">Orc</option>
+                  <option value="Tiefling">Tiefling</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  class="font-cinzel text-gold text-sm tracking-wider block mb-2"
+                  >Background</label
+                >
+                <select
+                  id="char-background"
+                  class="w-full bg-guild-dark border border-gold/20 rounded px-4 py-3 text-parchment focus:border-gold/50 focus:outline-none font-crimson transition-colors cursor-pointer"
+                >
+                  <option value="">— Select Background —</option>
+                  <option value="Acolyte">Acolyte</option>
+                  <option value="Artisan">Artisan</option>
+                  <option value="Charlatan">Charlatan</option>
+                  <option value="Criminal">Criminal</option>
+                  <option value="Entertainer">Entertainer</option>
+                  <option value="Farmer">Farmer</option>
+                  <option value="Guard">Guard</option>
+                  <option value="Guide">Guide</option>
+                  <option value="Hermit">Hermit</option>
+                  <option value="Merchant">Merchant</option>
+                  <option value="Noble">Noble</option>
+                  <option value="Sage">Sage</option>
+                  <option value="Sailor">Sailor</option>
+                  <option value="Scribe">Scribe</option>
+                  <option value="Soldier">Soldier</option>
+                  <option value="Wayfarer">Wayfarer</option>
+                </select>
+              </div>
+            </div>
+            <!-- Ability Score Method -->
+            <div class="mb-6">
+              <label
+                class="font-cinzel text-gold text-sm tracking-wider block mb-2"
+                >Ability Score Method</label
+              >
+              <div class="flex flex-wrap gap-3">
+                <button
+                  id="method-standard"
+                  onclick="setScoreMethod('standard')"
+                  class="font-cinzel text-xs tracking-wider px-4 py-2 border border-gold/30 text-gold rounded hover:bg-gold/10 transition-all bg-gold/15"
+                >
+                  Standard Array
+                </button>
+                <button
+                  id="method-random"
+                  onclick="setScoreMethod('random')"
+                  class="font-cinzel text-xs tracking-wider px-4 py-2 border border-gold/30 text-parchment/50 rounded hover:bg-gold/10 transition-all"
+                >
+                  Roll 4d6 Drop Lowest
+                </button>
+                <button
+                  id="method-pointbuy"
+                  onclick="setScoreMethod('pointbuy')"
+                  class="font-cinzel text-xs tracking-wider px-4 py-2 border border-gold/30 text-parchment/50 rounded hover:bg-gold/10 transition-all"
+                >
+                  Point Buy (27pts)
+                </button>
+              </div>
+            </div>
+            <!-- Point Buy remaining -->
+            <div id="pointbuy-info" class="hidden mb-4 text-center">
+              <span class="font-cinzel text-sm text-gold"
+                >Points Remaining:
+                <span id="pointbuy-remaining" class="font-bold text-lg"
+                  >27</span
+                >
+                / 27</span
+              >
+            </div>
+            <!-- Ability Scores Display -->
+            <div
+              class="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-8"
+              id="ability-scores-container"
+            ></div>
+            <!-- Class Info Panel -->
+            <div
+              id="class-info-panel"
+              class="hidden mb-6 bg-guild-dark/50 border border-gold/10 rounded-lg p-5"
+            >
+              <h4
+                class="font-cinzel text-gold text-sm tracking-wider mb-2"
+                id="class-info-title"
+              ></h4>
+              <p class="text-parchment/60 text-sm" id="class-info-desc"></p>
+              <div class="mt-3 flex flex-wrap gap-2" id="class-info-tags"></div>
+            </div>
+            <!-- Generate / Actions -->
+            <div class="flex flex-wrap gap-3">
+              <button
+                onclick="rollAbilities()"
+                class="font-cinzel text-sm tracking-wider uppercase px-6 py-3 bg-gold/90 text-guild-dark hover:bg-gold-bright rounded transition-all font-bold hidden"
+                id="btn-roll"
+              >
+                🎲 Roll Abilities
+              </button>
+              <button
+                onclick="generateCharacterSheet()"
+                class="font-cinzel text-sm tracking-wider uppercase px-6 py-3 border border-gold/40 text-gold hover:bg-gold/10 rounded transition-all"
+                id="btn-generate"
+              >
+                📜 Generate Sheet
+              </button>
+              <button
+                onclick="resetCreator()"
+                class="font-cinzel text-sm tracking-wider uppercase px-6 py-3 border border-blood/40 text-blood-glow hover:bg-blood/10 rounded transition-all"
+                id="btn-reset"
+              >
+                ↺ Reset
+              </button>
+            </div>
+            <!-- Generated Sheet Preview -->
+            <div
+              id="sheet-preview"
+              class="hidden mt-8 bg-parchment/5 border border-gold/20 rounded-lg p-6"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <h4 class="font-cinzel text-gold text-lg tracking-wider">
+                  Character Sheet Preview
+                </h4>
+                <span class="font-inter text-xs text-parchment/40"
+                  >D&D 2024 Rules</span
+                >
+              </div>
+              <div
+                id="sheet-content"
+                class="text-parchment/80 text-sm space-y-2 font-crimson"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== DUNGEON CRAWLER GAME ==================== -->
+    <section id="game" class="relative py-24 sm:py-32">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <p
+            class="font-cinzel text-gold text-sm tracking-[0.3em] uppercase mb-3"
+          >
+            Interactive Challenge
+          </p>
+          <h2
+            class="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment mb-6"
+          >
+            The Guild's <span class="text-gold">Proving Grounds</span>
+          </h2>
+          <div
+            class="w-24 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-4"
+          ></div>
+          <p class="text-parchment/60 max-w-xl mx-auto">
+            Prove your worth by delving into the dungeon below. Slay monsters,
+            collect treasure, and survive as long as you can.
+          </p>
+        </div>
+        <div
+          class="bg-gradient-to-b from-guild-deeper to-guild-dark border border-gold/20 rounded-xl overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.5)]"
+        >
+          <div
+            class="bg-guild-deeper border-b border-gold/15 px-6 py-3 flex items-center justify-between flex-wrap gap-2"
+          >
+            <span class="font-cinzel text-gold/70 text-sm tracking-wider"
+              >⚔️ Dungeon Crawler</span
+            >
+            <div class="flex items-center gap-4 text-xs font-inter">
+              <span class="text-parchment/50"
+                >HP:
+                <span id="game-hp" class="text-blood-glow font-bold"
+                  >100</span
+                ></span
+              >
+              <span class="text-parchment/50"
+                >Gold:
+                <span id="game-gold" class="text-gold font-bold">0</span></span
+              >
+              <span class="text-parchment/50"
+                >Floor:
+                <span id="game-floor" class="text-emerald font-bold"
+                  >1</span
+                ></span
+              >
+              <span class="text-parchment/50"
+                >Kills:
+                <span id="game-kills" class="text-amethyst font-bold"
+                  >0</span
+                ></span
+              >
+            </div>
+          </div>
+          <div class="px-6 py-3 bg-guild-dark/50 border-b border-gold/10">
+            <p class="font-inter text-xs text-parchment/50 text-center">
+              <span class="text-gold">WASD</span> or
+              <span class="text-gold">Arrow Keys</span> to move ·
+              <span class="text-gold">Space</span> to attack · Walk into
+              <span class="text-emerald">green stairs</span> to descend ·
+              Collect <span class="text-gold">gold ✦</span> and
+              <span class="text-blood-glow">potions ♥</span>
+            </p>
+          </div>
+          <div class="flex justify-center p-4 bg-black/20">
+            <canvas
+              id="gameCanvas"
+              width="640"
+              height="480"
+              class="border border-gold/10 rounded bg-guild-dark max-w-full"
+              style="aspect-ratio: 4/3"
+            ></canvas>
+          </div>
+          <div class="px-6 py-3 border-t border-gold/10 bg-guild-dark/50">
+            <p
+              id="game-message"
+              class="font-crimson text-sm text-parchment/60 text-center italic"
+            >
+              Click the canvas and press any key to begin your descent...
+            </p>
+          </div>
+          <div
+            class="md:hidden px-6 py-4 border-t border-gold/10 flex justify-center gap-2"
+          >
+            <div class="flex flex-col items-center gap-2">
+              <button
+                ontouchstart="mobileInput('up')"
+                class="w-12 h-12 bg-guild-deeper border border-gold/20 rounded text-gold font-bold text-lg active:bg-gold/20"
+              >
+                ↑
+              </button>
+              <div class="flex gap-2">
+                <button
+                  ontouchstart="mobileInput('left')"
+                  class="w-12 h-12 bg-guild-deeper border border-gold/20 rounded text-gold font-bold text-lg active:bg-gold/20"
+                >
+                  ←
+                </button>
+                <button
+                  ontouchstart="mobileInput('attack')"
+                  class="w-12 h-12 bg-guild-deeper border border-blood/30 rounded text-blood-glow font-bold text-sm active:bg-blood/20"
+                >
+                  ATK
+                </button>
+                <button
+                  ontouchstart="mobileInput('right')"
+                  class="w-12 h-12 bg-guild-deeper border border-gold/20 rounded text-gold font-bold text-lg active:bg-gold/20"
+                >
+                  →
+                </button>
+              </div>
+              <button
+                ontouchstart="mobileInput('down')"
+                class="w-12 h-12 bg-guild-deeper border border-gold/20 rounded text-gold font-bold text-lg active:bg-gold/20"
+              >
+                ↓
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section
+      id="faq"
+      class="relative py-24 sm:py-32 bg-gradient-to-b from-guild-dark via-guild-deeper to-guild-dark"
+    >
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p
+            class="font-cinzel text-gold text-sm tracking-[0.3em] uppercase mb-3"
+          >
+            Common Questions
+          </p>
+          <h2
+            class="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment mb-6"
+          >
+            Frequently <span class="text-gold">Asked</span>
+          </h2>
+          <div
+            class="w-24 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto"
+          ></div>
+        </div>
+        <div class="space-y-4" id="faq-container">
+          <div
+            class="border border-gold/15 rounded-lg overflow-hidden hover:border-gold/30 transition-colors"
+          >
+            <button
+              class="faq-toggle w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+              onclick="toggleFaq(this)"
+              id="faq-q1"
+            >
+              <span
+                class="font-cinzel text-parchment group-hover:text-gold transition-colors text-base sm:text-lg"
+                >Is Dungeons and Dragons satanic?</span
+              >
+              <span
+                class="text-gold text-xl shrink-0 transition-transform duration-300"
+                >+</span
+              >
+            </button>
+            <div class="faq-answer px-6 pb-5">
+              <p class="text-parchment/70 leading-relaxed">
+                No, it is a stupid stigma from the 90s.
+              </p>
+            </div>
+          </div>
+          <div
+            class="border border-gold/15 rounded-lg overflow-hidden hover:border-gold/30 transition-colors"
+          >
+            <button
+              class="faq-toggle w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+              onclick="toggleFaq(this)"
+              id="faq-q2"
+            >
+              <span
+                class="font-cinzel text-parchment group-hover:text-gold transition-colors text-base sm:text-lg"
+                >Isn't roleplaying weird and cringe?</span
+              >
+              <span
+                class="text-gold text-xl shrink-0 transition-transform duration-300"
+                >+</span
+              >
+            </button>
+            <div class="faq-answer px-6 pb-5">
+              <p class="text-parchment/70 leading-relaxed">
+                Hey! Don't be rude, to each their own, and no you don't have to
+                roleplay to play D&D, everyone has their own playstyle.
+              </p>
+            </div>
+          </div>
+          <div
+            class="border border-gold/15 rounded-lg overflow-hidden hover:border-gold/30 transition-colors"
+          >
+            <button
+              class="faq-toggle w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+              onclick="toggleFaq(this)"
+              id="faq-q3"
+            >
+              <span
+                class="font-cinzel text-parchment group-hover:text-gold transition-colors text-base sm:text-lg"
+                >Is D&D hard and expensive?</span
+              >
+              <span
+                class="text-gold text-xl shrink-0 transition-transform duration-300"
+                >+</span
+              >
+            </button>
+            <div class="faq-answer px-6 pb-5">
+              <p class="text-parchment/70 leading-relaxed">
+                Well not really, the rules can be quite confusing, but you can
+                basically ignore them, the main point of D&D is using your
+                imagination. Is it expensive? Not at all, all you really need is
+                a dice, pen & paper, and your imagination.
+              </p>
+            </div>
+          </div>
+          <div
+            class="border border-gold/15 rounded-lg overflow-hidden hover:border-gold/30 transition-colors"
+          >
+            <button
+              class="faq-toggle w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+              onclick="toggleFaq(this)"
+              id="faq-q4"
+            >
+              <span
+                class="font-cinzel text-parchment group-hover:text-gold transition-colors text-base sm:text-lg"
+                >How do I start playing D&D?</span
+              >
+              <span
+                class="text-gold text-xl shrink-0 transition-transform duration-300"
+                >+</span
+              >
+            </button>
+            <div class="faq-answer px-6 pb-5">
+              <p class="text-parchment/70 leading-relaxed">
+                We actually offer session services on our website just head onto
+                <a
+                  href="#services"
+                  class="text-gold underline hover:text-gold-bright transition-colors"
+                  >this link</a
+                >
+                to see our options!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-guild-dark border-t border-gold/10 py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid sm:grid-cols-3 gap-8 mb-8">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <img
+                src="assests/logo.png"
+                alt="Logo"
+                class="w-8 h-8 rounded-full opacity-60 object-cover"
+              />
+              <span class="font-cinzel text-gold/60 text-sm tracking-wider"
+                >Xanathar's Mercantile</span
+              >
+            </div>
+            <p class="text-parchment/40 text-sm italic">
+              "To spread the wonders of imagination."
+            </p>
+          </div>
+          <div>
+            <h4 class="font-cinzel text-gold/60 text-sm tracking-wider mb-3">
+              Quick Links
+            </h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  href="#store"
+                  class="text-parchment/40 hover:text-gold transition-colors"
+                  >Browse Wares</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  class="text-parchment/40 hover:text-gold transition-colors"
+                  >DM Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#creator"
+                  class="text-parchment/40 hover:text-gold transition-colors"
+                  >Character Creator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#game"
+                  class="text-parchment/40 hover:text-gold transition-colors"
+                  >Dungeon Crawler</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-cinzel text-gold/60 text-sm tracking-wider mb-3">
+              Contact the Guild
+            </h4>
+            <ul class="space-y-2 text-sm text-parchment/40">
+              <li>📧 guildmaster@xanathars.com</li>
+              <li>📍 Waterdeep, Sword Coast</li>
+              <li>🕐 Tavern Hours: Dusk till Dawn</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gold/10 pt-6 text-center">
+          <p class="font-inter text-xs text-parchment/30">
+            &copy; 2026 Xanathar's Mercantile. All rights reserved. This is not
+            affiliated with Wizards of the Coast.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================== SYLGAR GOLDFISH BOWL ==================== -->
+    <div
+      id="sylgar-bowl"
+      class="fixed bottom-4 right-4 z-40 cursor-pointer group"
+      onclick="petSylgar()"
+    >
+      <div class="relative w-20 h-20 sm:w-24 sm:h-24">
+        <!-- Bowl -->
+        <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
+          <!-- Water -->
+          <ellipse
+            cx="50"
+            cy="60"
+            rx="34"
+            ry="28"
+            fill="rgba(64,164,223,0.15)"
+          />
+          <!-- Bowl glass -->
+          <path
+            d="M16 35 Q15 70 22 82 Q35 98 50 98 Q65 98 78 82 Q85 70 84 35"
+            stroke="rgba(160,210,240,0.4)"
+            stroke-width="2"
+            fill="none"
+          />
+          <!-- Bowl rim -->
+          <ellipse
+            cx="50"
+            cy="35"
+            rx="35"
+            ry="8"
+            stroke="rgba(160,210,240,0.5)"
+            stroke-width="2"
+            fill="rgba(64,164,223,0.08)"
+          />
+          <!-- Water surface -->
+          <path
+            d="M20 50 Q35 46 50 50 Q65 54 80 50"
+            stroke="rgba(100,180,230,0.3)"
+            stroke-width="1"
+            fill="none"
+          />
+        </svg>
+        <!-- Fish (animated) -->
+        <div
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[30%] fish-swim"
+        >
+          <svg viewBox="0 0 30 20" class="w-8 h-6" fill="none">
+            <ellipse cx="14" cy="10" rx="10" ry="6" fill="#f0a030" />
+            <path d="M24 10 L30 4 L30 16 Z" fill="#e08020" />
+            <circle cx="8" cy="8" r="1.5" fill="#0d0d0d" />
+            <circle cx="8.5" cy="7.5" r="0.5" fill="white" />
+            <path
+              d="M14 4 Q16 2 18 4"
+              stroke="#e08020"
+              stroke-width="1"
+              fill="none"
+            />
+          </svg>
+        </div>
+        <!-- Bubbles -->
+        <div
+          class="absolute top-[40%] left-[45%] w-1.5 h-1.5 bg-blue-300/30 rounded-full"
+          style="animation: bubble 3s ease-out infinite"
+        ></div>
+        <div
+          class="absolute top-[45%] left-[55%] w-1 h-1 bg-blue-300/20 rounded-full"
+          style="animation: bubble 4s ease-out infinite 1s"
+        ></div>
+      </div>
+      <p
+        id="sylgar-text"
+        class="text-center font-cinzel text-[9px] text-gold/50 mt-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      >
+        Sylgar 🐟
+      </p>
+    </div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+      // =====================================================
+      // MOBILE MENU
+      // =====================================================
+      document
+        .getElementById("mobile-menu-btn")
+        .addEventListener("click", () =>
+          document.getElementById("mobile-menu").classList.toggle("hidden"),
+        );
+      function closeMobileMenu() {
+        document.getElementById("mobile-menu").classList.add("hidden");
+      }
+
+      // =====================================================
+      // SYLGAR
+      // =====================================================
+      let sylgarPets = 0;
+      function petSylgar() {
+        sylgarPets++;
+        const txt = document.getElementById("sylgar-text");
+        const msgs = [
+          "Sylgar 🐟",
+          "Blub blub!",
+          "She likes you!",
+          "*happy fish noises*",
+          "Xanathar approves!",
+          "Don't tell Xanathar...",
+          "Sylgar is pleased.",
+        ];
+        txt.textContent = msgs[Math.min(sylgarPets - 1, msgs.length - 1)];
+        txt.style.opacity = "1";
+        setTimeout(() => {
+          txt.style.opacity = "";
+        }, 2000);
+      }
+
+      // =====================================================
+      // FAQ TOGGLE
+      // =====================================================
+      function toggleFaq(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector("span:last-child");
+        const isOpen = answer.classList.contains("open");
+        document
+          .querySelectorAll(".faq-answer")
+          .forEach((a) => a.classList.remove("open"));
+        document
+          .querySelectorAll(".faq-toggle span:last-child")
+          .forEach((i) => {
+            i.textContent = "+";
+            i.style.transform = "";
+          });
+        if (!isOpen) {
+          answer.classList.add("open");
+          icon.textContent = "−";
+          icon.style.transform = "rotate(180deg)";
+        }
+      }
+
+      // =====================================================
+      // CART SYSTEM
+      // =====================================================
+      let cart = [];
+      function toggleCart() {
+        const sidebar = document.getElementById("cart-sidebar");
+        const overlay = document.getElementById("cart-overlay");
+        const isOpen = !sidebar.classList.contains("translate-x-full");
+        if (isOpen) {
+          sidebar.classList.add("translate-x-full");
+          overlay.classList.add("hidden");
+        } else {
+          sidebar.classList.remove("translate-x-full");
+          overlay.classList.remove("hidden");
+        }
+      }
+      function addToCart(productId) {
+        const product = storeProducts.find((p) => p.id === productId);
+        if (!product) return;
+        const existing = cart.find((c) => c.id === productId);
+        if (existing) {
+          existing.qty++;
+        } else {
+          cart.push({ ...product, qty: 1 });
+        }
+        renderCart();
+        // Flash button
+        const btn = document.querySelector(`[data-add-id="${productId}"]`);
+        if (btn) {
+          btn.textContent = "✓ Added!";
+          btn.classList.add("bg-emerald/30");
+          setTimeout(() => {
+            btn.textContent = "Add to Cart";
+            btn.classList.remove("bg-emerald/30");
+          }, 1000);
+        }
+      }
+      function removeFromCart(productId) {
+        cart = cart.filter((c) => c.id !== productId);
+        renderCart();
+      }
+      function changeQty(productId, delta) {
+        const item = cart.find((c) => c.id === productId);
+        if (!item) return;
+        item.qty += delta;
+        if (item.qty <= 0) {
+          removeFromCart(productId);
+          return;
+        }
+        renderCart();
+      }
+      function renderCart() {
+        const container = document.getElementById("cart-items");
+        const countEl = document.getElementById("cart-count");
+        const totalEl = document.getElementById("cart-total");
+        const totalQty = cart.reduce((s, c) => s + c.qty, 0);
+        const totalPrice = cart.reduce((s, c) => s + c.price * c.qty, 0);
+        countEl.textContent = totalQty;
+        if (totalQty > 0) {
+          countEl.classList.remove("hidden");
+        } else {
+          countEl.classList.add("hidden");
+        }
+        totalEl.textContent = "₱" + totalPrice.toLocaleString();
+        if (cart.length === 0) {
+          container.innerHTML =
+            '<p class="text-parchment/40 text-center italic">Your bag of holding is empty...</p>';
+          return;
+        }
+        container.innerHTML = cart
+          .map(
+            (item) => `
+            <div class="flex gap-3 bg-guild-dark/50 rounded-lg p-3 border border-gold/10">
+                <img src="${item.img}" class="w-14 h-14 object-cover rounded flex-shrink-0" alt="${item.name}">
+                <div class="flex-1 min-w-0">
+                    <p class="font-cinzel text-sm text-parchment truncate">${item.name}</p>
+                    <p class="font-cinzel text-xs text-gold">₱${item.price.toLocaleString()}</p>
+                    <div class="flex items-center gap-2 mt-1">
+                        <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 rounded bg-guild-deeper border border-gold/20 text-gold text-xs flex items-center justify-center hover:bg-gold/10">−</button>
+                        <span class="text-parchment text-sm font-bold">${item.qty}</span>
+                        <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 rounded bg-guild-deeper border border-gold/20 text-gold text-xs flex items-center justify-center hover:bg-gold/10">+</button>
+                        <button onclick="removeFromCart('${item.id}')" class="ml-auto text-blood-glow/60 hover:text-blood-glow text-xs">✕</button>
+                    </div>
+                </div>
+            </div>
+        `,
+          )
+          .join("");
+      }
+
+      // =====================================================
+      // STORE PRODUCTS
+      // =====================================================
+      const storeProducts = [
+        {
+          id: "dice-standard",
+          name: "Standard Polyhedral Dice Set",
+          cat: "dice",
+          price: 150,
+          img: "assests/standard.jpg",
+          desc: "7-piece set: d4, d6, d8, d10, d12, d20, and percentile die.",
+        },
+        {
+          id: "dice-metal",
+          name: "Premium Metal Dice Set",
+          cat: "dice",
+          price: 750,
+          img: "assests/metal.jpg",
+          desc: "Heavy, solid metal dice with gold numbering. Satisfying to roll.",
+        },
+        {
+          id: "dice-gemstone",
+          name: "Gemstone Dice Set",
+          cat: "dice",
+          price: 1200,
+          img: "assests/gemstone.webp",
+          desc: "Hand-carved from real amethyst. A collector's treasure.",
+        },
+        {
+          id: "book-phb",
+          name: "Player's Handbook (2024)",
+          cat: "books",
+          price: 2500,
+          img: "assests/players_handbook.png",
+          desc: "The essential guide for every D&D player. Create characters, learn rules, cast spells.",
+        },
+        {
+          id: "book-dmg",
+          name: "Dungeon Master's Guide (2024)",
+          cat: "books",
+          price: 2500,
+          img: "assests/dm_guide.png",
+          desc: "Everything a DM needs to create adventures and run a campaign.",
+        },
+        {
+          id: "book-mm",
+          name: "Monster Manual (2025)",
+          cat: "books",
+          price: 2500,
+          img: "assests/monster_manual.png",
+          desc: "Hundreds of monsters with lore, stats, and stunning art.",
+        },
+        {
+          id: "mini-hero",
+          name: "Hero Miniature (Painted)",
+          cat: "miniatures",
+          price: 350,
+          img: "assests/heroes.webp",
+          desc: "Pre-painted adventurer miniature. Multiple classes available.",
+        },
+        {
+          id: "mini-monster",
+          name: "Monster Pack (5 Minis)",
+          cat: "miniatures",
+          price: 800,
+          img: "assests/monsters.jpg",
+          desc: "Pack of 5 common monsters: Goblins, Skeletons, and more.",
+        },
+        {
+          id: "mini-dragon",
+          name: "Ancient Dragon (Large)",
+          cat: "miniatures",
+          price: 2000,
+          img: "assests/dragon.jpg",
+          desc: "Massive, highly detailed dragon figure. A centerpiece for any table.",
+        },
+        {
+          id: "acc-tower",
+          name: "Wooden Dice Tower",
+          cat: "accessories",
+          price: 500,
+          img: "assests/dice_tower.jpg",
+          desc: "Hand-crafted wooden dice tower with carved dragon motif.",
+        },
+        {
+          id: "acc-tray",
+          name: "Leather Dice Tray",
+          cat: "accessories",
+          price: 350,
+          img: "assests/dice_tray.jpg",
+          desc: "Hexagonal rolling tray with premium leather lining.",
+        },
+        {
+          id: "acc-screen",
+          name: "DM Screen (Customizable)",
+          cat: "accessories",
+          price: 450,
+          img: "assests/dm_screen.avif",
+          desc: "Four-panel DM screen with pockets for custom inserts and quick-reference rules.",
+        },
+      ];
+
+      function renderStore(filter = "all") {
+        const grid = document.getElementById("store-grid");
+        const products =
+          filter === "all"
+            ? storeProducts
+            : storeProducts.filter((p) => p.cat === filter);
+        grid.innerHTML = products
+          .map(
+            (p) => `
+            <div class="group bg-guild-dark border border-gold/10 rounded-lg overflow-hidden hover:border-gold/30 transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_8px_30px_rgba(212,168,67,0.1)] store-item" data-category="${p.cat}">
+                <div class="h-48 bg-gradient-to-br from-guild-deeper to-guild-shadow overflow-hidden">
+                    <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="p-5">
+                    <h3 class="font-cinzel text-gold font-semibold text-sm mb-1 leading-tight">${p.name}</h3>
+                    <p class="text-parchment/50 text-xs leading-relaxed mb-3 line-clamp-2">${p.desc}</p>
+                    <div class="flex items-center justify-between">
+                        <p class="font-cinzel text-gold-bright font-bold text-lg">₱${p.price.toLocaleString()}</p>
+                        <button data-add-id="${p.id}" onclick="addToCart('${p.id}')" class="font-cinzel text-[10px] tracking-wider uppercase px-3 py-1.5 border border-gold/30 text-gold rounded hover:bg-gold/10 transition-all">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        `,
+          )
+          .join("");
+      }
+      function filterStore(cat) {
+        document.querySelectorAll(".store-tab").forEach((b) => {
+          b.classList.remove("bg-gold/15", "text-gold");
+          b.classList.add("text-parchment/50");
+        });
+        document
+          .querySelector(`.store-tab[data-cat="${cat}"]`)
+          .classList.add("bg-gold/15", "text-gold");
+        document
+          .querySelector(`.store-tab[data-cat="${cat}"]`)
+          .classList.remove("text-parchment/50");
+        renderStore(cat);
+      }
+      renderStore();
+
+      // =====================================================
+      // CHARACTER CREATOR
+      // =====================================================
+      const classData = {
+        Barbarian: {
+          primary: "Strength",
+          complexity: "Average",
+          desc: "A fierce warrior who can enter a battle rage.",
+          hitDie: "d12",
+          saves: ["Strength", "Constitution"],
+          standard: [15, 13, 14, 10, 12, 8],
+        },
+        Bard: {
+          primary: "Charisma",
+          complexity: "High",
+          desc: "An inspiring magician whose power echoes the music of creation.",
+          hitDie: "d8",
+          saves: ["Dexterity", "Charisma"],
+          standard: [8, 14, 12, 13, 10, 15],
+        },
+        Cleric: {
+          primary: "Wisdom",
+          complexity: "Average",
+          desc: "A priestly champion who wields divine magic in service of a higher power.",
+          hitDie: "d8",
+          saves: ["Wisdom", "Charisma"],
+          standard: [14, 8, 13, 10, 15, 12],
+        },
+        Druid: {
+          primary: "Wisdom",
+          complexity: "High",
+          desc: "A priest of the Old Faith, wielding the powers of nature.",
+          hitDie: "d8",
+          saves: ["Intelligence", "Wisdom"],
+          standard: [8, 12, 14, 13, 15, 10],
+        },
+        Fighter: {
+          primary: "Str or Dex",
+          complexity: "Low",
+          desc: "A master of martial combat, skilled with a variety of weapons and armor.",
+          hitDie: "d10",
+          saves: ["Strength", "Constitution"],
+          standard: [15, 14, 13, 8, 10, 12],
+        },
+        Monk: {
+          primary: "Dex and Wis",
+          complexity: "High",
+          desc: "A master of martial arts, harnessing the power of body and mind.",
+          hitDie: "d8",
+          saves: ["Strength", "Dexterity"],
+          standard: [12, 15, 13, 10, 14, 8],
+        },
+        Paladin: {
+          primary: "Str and Cha",
+          complexity: "Average",
+          desc: "A holy warrior bound to a sacred oath.",
+          hitDie: "d10",
+          saves: ["Wisdom", "Charisma"],
+          standard: [15, 10, 13, 8, 12, 14],
+        },
+        Ranger: {
+          primary: "Dex and Wis",
+          complexity: "Average",
+          desc: "A warrior who combats threats on the edges of civilization.",
+          hitDie: "d10",
+          saves: ["Strength", "Dexterity"],
+          standard: [12, 15, 13, 8, 14, 10],
+        },
+        Rogue: {
+          primary: "Dexterity",
+          complexity: "Low",
+          desc: "A scoundrel who uses stealth and trickery to overcome obstacles.",
+          hitDie: "d8",
+          saves: ["Dexterity", "Intelligence"],
+          standard: [12, 15, 13, 14, 10, 8],
+        },
+        Sorcerer: {
+          primary: "Charisma",
+          complexity: "High",
+          desc: "A spellcaster who draws on inherent magic from a gift or bloodline.",
+          hitDie: "d6",
+          saves: ["Constitution", "Charisma"],
+          standard: [10, 13, 14, 8, 12, 15],
+        },
+        Warlock: {
+          primary: "Charisma",
+          complexity: "High",
+          desc: "A wielder of magic derived from a bargain with an extraplanar entity.",
+          hitDie: "d8",
+          saves: ["Wisdom", "Charisma"],
+          standard: [8, 14, 13, 12, 10, 15],
+        },
+        Wizard: {
+          primary: "Intelligence",
+          complexity: "Average",
+          desc: "A scholarly magic-user who commands arcane spells.",
+          hitDie: "d6",
+          saves: ["Intelligence", "Wisdom"],
+          standard: [8, 12, 13, 15, 14, 10],
+        },
+      };
+      const pointBuyCosts = {
+        8: 0,
+        9: 1,
+        10: 2,
+        11: 3,
+        12: 4,
+        13: 5,
+        14: 7,
+        15: 9,
+      };
+      let scoreMethod = "standard";
+      let currentScores = [15, 14, 13, 12, 10, 8];
+      let swapSource = null; // for standard array swapping
+      const abilityNames = ["str", "dex", "con", "int", "wis", "cha"];
+      const abilityLabels = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+      const abilityFull = [
+        "Strength",
+        "Dexterity",
+        "Constitution",
+        "Intelligence",
+        "Wisdom",
+        "Charisma",
+      ];
+
+      function getMod(score) {
+        const m = Math.floor((score - 10) / 2);
+        return m >= 0 ? "+" + m : "" + m;
+      }
+
+      function getPointsSpent() {
+        return currentScores.reduce((s, v) => s + (pointBuyCosts[v] || 0), 0);
+      }
+
+      function renderAbilityScores() {
+        const container = document.getElementById("ability-scores-container");
+        container.innerHTML = abilityNames
+          .map((a, i) => {
+            if (scoreMethod === "standard") {
+              const isSelected = swapSource === i;
+              return `<div class="bg-guild-dark border ${isSelected ? "border-gold ring-2 ring-gold/40" : "border-gold/15"} rounded-lg p-3 text-center cursor-pointer hover:border-gold/40 transition-all" onclick="handleStandardSwap(${i})">
+                    <span class="font-cinzel text-[10px] text-gold/60 tracking-widest block mb-1">${abilityLabels[i]}</span>
+                    <span class="font-cinzel text-2xl text-parchment font-bold block">${currentScores[i]}</span>
+                    <span class="font-inter text-xs text-gold">${getMod(currentScores[i])}</span>
+                    <span class="block text-[9px] text-parchment/30 mt-1">click to swap</span>
+                </div>`;
+            } else if (scoreMethod === "pointbuy") {
+              return `<div class="bg-guild-dark border border-gold/15 rounded-lg p-3 text-center hover:border-gold/30 transition-colors">
+                    <span class="font-cinzel text-[10px] text-gold/60 tracking-widest block mb-1">${abilityLabels[i]}</span>
+                    <div class="flex items-center justify-center gap-1">
+                        <button onclick="adjustPointBuy(${i}, -1)" class="w-6 h-6 rounded bg-guild-deeper border border-gold/20 text-gold text-xs flex items-center justify-center hover:bg-gold/10 transition-all">−</button>
+                        <span class="font-cinzel text-xl text-parchment font-bold w-8 text-center">${currentScores[i]}</span>
+                        <button onclick="adjustPointBuy(${i}, 1)" class="w-6 h-6 rounded bg-guild-deeper border border-gold/20 text-gold text-xs flex items-center justify-center hover:bg-gold/10 transition-all">+</button>
+                    </div>
+                    <span class="font-inter text-xs text-gold">${getMod(currentScores[i])}</span>
+                </div>`;
+            } else {
+              // Random
+              return `<div class="bg-guild-dark border border-gold/15 rounded-lg p-3 text-center hover:border-gold/30 transition-colors">
+                    <span class="font-cinzel text-[10px] text-gold/60 tracking-widest block mb-1">${abilityLabels[i]}</span>
+                    <span class="font-cinzel text-2xl text-parchment font-bold block">${currentScores[i]}</span>
+                    <span class="font-inter text-xs text-gold">${getMod(currentScores[i])}</span>
+                </div>`;
+            }
+          })
+          .join("");
+        // Update pointbuy info
+        const pbInfo = document.getElementById("pointbuy-info");
+        if (scoreMethod === "pointbuy") {
+          pbInfo.classList.remove("hidden");
+          const spent = getPointsSpent();
+          document.getElementById("pointbuy-remaining").textContent =
+            27 - spent;
+          document.getElementById("pointbuy-remaining").style.color =
+            27 - spent < 0 ? "#c0392b" : "";
+        } else {
+          pbInfo.classList.add("hidden");
+        }
+      }
+
+      function handleStandardSwap(idx) {
+        if (scoreMethod !== "standard") return;
+        if (swapSource === null) {
+          swapSource = idx;
+        } else {
+          if (swapSource !== idx) {
+            const temp = currentScores[swapSource];
+            currentScores[swapSource] = currentScores[idx];
+            currentScores[idx] = temp;
+          }
+          swapSource = null;
+        }
+        renderAbilityScores();
+      }
+
+      function adjustPointBuy(idx, delta) {
+        if (scoreMethod !== "pointbuy") return;
+        const newVal = currentScores[idx] + delta;
+        if (newVal < 8 || newVal > 15) return;
+        const oldCost = pointBuyCosts[currentScores[idx]];
+        const newCost = pointBuyCosts[newVal];
+        const spent = getPointsSpent();
+        if (spent - oldCost + newCost > 27) return; // over budget
+        currentScores[idx] = newVal;
+        renderAbilityScores();
+      }
+
+      function setScoreMethod(method) {
+        scoreMethod = method;
+        swapSource = null;
+        document
+          .querySelectorAll(
+            "#method-standard, #method-random, #method-pointbuy",
+          )
+          .forEach((b) => {
+            b.classList.remove("bg-gold/15", "text-gold");
+            b.classList.add("text-parchment/50");
+          });
+        document
+          .getElementById("method-" + method)
+          .classList.add("bg-gold/15", "text-gold");
+        document
+          .getElementById("method-" + method)
+          .classList.remove("text-parchment/50");
+        // Show/hide roll button
+        document
+          .getElementById("btn-roll")
+          .classList.toggle("hidden", method !== "random");
+        if (method === "standard") {
+          const cls = document.getElementById("char-class").value;
+          if (cls && classData[cls]) {
+            currentScores = [...classData[cls].standard];
+          } else {
+            currentScores = [15, 14, 13, 12, 10, 8];
+          }
+        } else if (method === "pointbuy") {
+          currentScores = [8, 8, 8, 8, 8, 8];
+        } else if (method === "random") {
+          currentScores = [10, 10, 10, 10, 10, 10];
+        }
+        renderAbilityScores();
+      }
+
+      function rollAbilities() {
+        if (scoreMethod !== "random") return;
+        currentScores = [];
+        for (let i = 0; i < 6; i++) {
+          const rolls = [];
+          for (let j = 0; j < 4; j++)
+            rolls.push(Math.floor(Math.random() * 6) + 1);
+          rolls.sort((a, b) => b - a);
+          currentScores.push(rolls[0] + rolls[1] + rolls[2]);
+        }
+        renderAbilityScores();
+        // Animate
+        document
+          .querySelectorAll("#ability-scores-container > div")
+          .forEach((d) => {
+            d.style.transform = "scale(1.1)";
+            d.style.borderColor = "rgba(212,168,67,0.5)";
+            setTimeout(() => {
+              d.style.transform = "";
+              d.style.borderColor = "";
+            }, 300);
+          });
+      }
+
+      function generateCharacterSheet() {
+        const name =
+          document.getElementById("char-name").value || "Unnamed Adventurer";
+        const cls = document.getElementById("char-class").value || "Fighter";
+        const species =
+          document.getElementById("char-species").value || "Human";
+        const bg =
+          document.getElementById("char-background").value || "Soldier";
+        const info = classData[cls] || classData.Fighter;
+        const hp =
+          cls === "Barbarian"
+            ? 12
+            : ["Fighter", "Paladin", "Ranger"].includes(cls)
+              ? 10
+              : ["Sorcerer", "Wizard"].includes(cls)
+                ? 6
+                : 8;
+        const conMod = Math.floor((currentScores[2] - 10) / 2);
+        const totalHP = hp + conMod;
+        const sheet = document.getElementById("sheet-preview");
+        const content = document.getElementById("sheet-content");
+        content.innerHTML = `
+            <div class="grid sm:grid-cols-2 gap-4">
+                <div class="space-y-1">
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Name</span><span class="text-parchment font-semibold">${name}</span></div>
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Class</span><span class="text-parchment">${cls}</span></div>
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Species</span><span class="text-parchment">${species}</span></div>
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Background</span><span class="text-parchment">${bg}</span></div>
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Level</span><span class="text-parchment">1</span></div>
+                </div>
+                <div class="space-y-1">
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Hit Points</span><span class="text-blood-glow font-bold">${totalHP}</span></div>
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Hit Die</span><span class="text-parchment">${info.hitDie}</span></div>
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Proficiency Bonus</span><span class="text-gold">+2</span></div>
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Primary Ability</span><span class="text-parchment">${info.primary}</span></div>
+                    <div class="flex justify-between border-b border-gold/10 pb-1"><span class="text-gold/60">Saving Throws</span><span class="text-parchment">${info.saves.join(", ")}</span></div>
+                </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gold/10"><div class="flex flex-wrap gap-4 justify-center text-center">
+                ${abilityFull.map((a, i) => `<div><span class="text-gold/50 text-[10px] block">${a.substring(0, 3).toUpperCase()}</span><span class="font-bold text-lg">${currentScores[i]}</span><span class="text-gold text-xs block">(${getMod(currentScores[i])})</span></div>`).join("")}
+            </div></div>
+            <p class="text-parchment/40 text-xs mt-4 text-center italic">Built with Xanathar's Character Forge · D&D 2024 Rules</p>`;
+        sheet.classList.remove("hidden");
+        sheet.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      function resetCreator() {
+        document.getElementById("char-name").value = "";
+        document.getElementById("char-class").value = "";
+        document.getElementById("char-species").value = "";
+        document.getElementById("char-background").value = "";
+        currentScores = [15, 14, 13, 12, 10, 8];
+        scoreMethod = "standard";
+        swapSource = null;
+        setScoreMethod("standard");
+        document.getElementById("sheet-preview").classList.add("hidden");
+        document.getElementById("class-info-panel").classList.add("hidden");
+      }
+
+      document.getElementById("char-class").addEventListener("change", (e) => {
+        const cls = e.target.value;
+        const panel = document.getElementById("class-info-panel");
+        if (cls && classData[cls]) {
+          const info = classData[cls];
+          panel.classList.remove("hidden");
+          document.getElementById("class-info-title").textContent = cls;
+          document.getElementById("class-info-desc").textContent = info.desc;
+          document.getElementById("class-info-tags").innerHTML = `
+                <span class="text-[10px] font-inter px-2 py-0.5 rounded bg-gold/10 text-gold border border-gold/20">Primary: ${info.primary}</span>
+                <span class="text-[10px] font-inter px-2 py-0.5 rounded bg-gold/10 text-gold border border-gold/20">Hit Die: ${info.hitDie}</span>
+                <span class="text-[10px] font-inter px-2 py-0.5 rounded bg-gold/10 text-gold border border-gold/20">Complexity: ${info.complexity}</span>`;
+          if (scoreMethod === "standard") {
+            currentScores = [...info.standard];
+            swapSource = null;
+            renderAbilityScores();
+          }
+          document
+            .getElementById("step-indicator-1")
+            .classList.add("bg-gold/20", "text-gold", "border-gold/30");
+        } else {
+          panel.classList.add("hidden");
+        }
+      });
+      document
+        .getElementById("char-species")
+        .addEventListener("change", (e) => {
+          if (e.target.value) {
+            const ind = document.getElementById("step-indicator-2");
+            ind.classList.add("bg-gold/20", "text-gold", "border-gold/30");
+            ind.classList.remove("text-parchment/40", "border-parchment/10");
+          }
+        });
+      document
+        .getElementById("char-background")
+        .addEventListener("change", (e) => {
+          if (e.target.value) {
+            const ind = document.getElementById("step-indicator-3");
+            ind.classList.add("bg-gold/20", "text-gold", "border-gold/30");
+            ind.classList.remove("text-parchment/40", "border-parchment/10");
+          }
+        });
+
+      // Initial render
+      renderAbilityScores();
+
+      // =====================================================
+      // DUNGEON CRAWLER GAME
+      // =====================================================
+      (function () {
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const TILE = 32,
+          COLS = canvas.width / TILE,
+          ROWS = canvas.height / TILE;
+        const COLORS = {
+          floor: "#1a1a2e",
+          floorAlt: "#16213e",
+          wall: "#2c2c3a",
+          wallTop: "#3a3a4a",
+          player: "#d4a843",
+          playerOutline: "#f0c75e",
+          gold: "#f0c75e",
+          potion: "#c0392b",
+          stairs: "#2d6a4f",
+          stairsIcon: "#4ade80",
+          shadow: "rgba(0,0,0,0.3)",
+        };
+        let gameState = "waiting";
+        let player = {
+          x: 1,
+          y: 1,
+          hp: 100,
+          maxHp: 100,
+          gold: 0,
+          atk: 10,
+          def: 2,
+          kills: 0,
+          floor: 1,
+        };
+        let monsters = [],
+          items = [],
+          stairs = { x: 0, y: 0 },
+          dungeon = [];
+        let attackDir = { x: 0, y: 0 },
+          attackFrame = 0,
+          keys = {},
+          moveTimer = 0,
+          lastTime = 0,
+          damageFlash = 0,
+          monsterMoveTimer = 0;
+        const MOVE_DELAY = 150,
+          MONSTER_MOVE_DELAY = 500;
+
+        function generateDungeon() {
+          dungeon = [];
+          for (let y = 0; y < ROWS; y++) {
+            dungeon[y] = [];
+            for (let x = 0; x < COLS; x++) dungeon[y][x] = 1;
+          }
+          const rooms = [],
+            numRooms = 5 + Math.floor(Math.random() * 4);
+          for (let i = 0; i < numRooms * 10 && rooms.length < numRooms; i++) {
+            const w = 3 + Math.floor(Math.random() * 5),
+              h = 3 + Math.floor(Math.random() * 4);
+            const rx = 1 + Math.floor(Math.random() * (COLS - w - 2)),
+              ry = 1 + Math.floor(Math.random() * (ROWS - h - 2));
+            let overlap = false;
+            for (const room of rooms) {
+              if (
+                rx < room.x + room.w + 1 &&
+                rx + w + 1 > room.x &&
+                ry < room.y + room.h + 1 &&
+                ry + h + 1 > room.y
+              ) {
+                overlap = true;
+                break;
+              }
+            }
+            if (!overlap) {
+              rooms.push({ x: rx, y: ry, w, h });
+              for (let dy = 0; dy < h; dy++)
+                for (let dx = 0; dx < w; dx++) dungeon[ry + dy][rx + dx] = 0;
+            }
+          }
+          for (let i = 1; i < rooms.length; i++) {
+            const a = rooms[i - 1],
+              b = rooms[i];
+            let cx = Math.floor(a.x + a.w / 2),
+              cy = Math.floor(a.y + a.h / 2);
+            const bx = Math.floor(b.x + b.w / 2),
+              by = Math.floor(b.y + b.h / 2);
+            while (cx !== bx) {
+              if (cy >= 0 && cy < ROWS && cx >= 0 && cx < COLS)
+                dungeon[cy][cx] = 0;
+              cx += cx < bx ? 1 : -1;
+            }
+            while (cy !== by) {
+              if (cy >= 0 && cy < ROWS && cx >= 0 && cx < COLS)
+                dungeon[cy][cx] = 0;
+              cy += cy < by ? 1 : -1;
+            }
+          }
+          const fr = rooms[0];
+          player.x = Math.floor(fr.x + fr.w / 2);
+          player.y = Math.floor(fr.y + fr.h / 2);
+          const lr = rooms[rooms.length - 1];
+          stairs.x = Math.floor(lr.x + lr.w / 2);
+          stairs.y = Math.floor(lr.y + lr.h / 2);
+          monsters = [];
+          const nm = 3 + player.floor * 2;
+          for (let i = 0; i < nm; i++) {
+            const room = rooms[Math.floor(Math.random() * rooms.length)];
+            let mx,
+              my,
+              tries = 0;
+            do {
+              mx = room.x + Math.floor(Math.random() * room.w);
+              my = room.y + Math.floor(Math.random() * room.h);
+              tries++;
+            } while (
+              tries < 20 &&
+              ((mx === player.x && my === player.y) ||
+                (mx === stairs.x && my === stairs.y) ||
+                monsters.some((m) => m.x === mx && m.y === my))
+            );
+            if (tries < 20) {
+              const fs = player.floor;
+              const types = [
+                {
+                  name: "Goblin",
+                  hp: 8 + fs * 3,
+                  atk: 3 + fs,
+                  color: "#4a7c4f",
+                  char: "g",
+                },
+                {
+                  name: "Skeleton",
+                  hp: 12 + fs * 4,
+                  atk: 5 + fs,
+                  color: "#c8c8c8",
+                  char: "s",
+                },
+                {
+                  name: "Orc",
+                  hp: 18 + fs * 5,
+                  atk: 7 + fs * 2,
+                  color: "#5a8a3c",
+                  char: "O",
+                },
+                {
+                  name: "Wraith",
+                  hp: 10 + fs * 3,
+                  atk: 9 + fs * 2,
+                  color: "#7b5ea7",
+                  char: "W",
+                },
+              ];
+              const t =
+                types[
+                  Math.floor(
+                    Math.random() *
+                      Math.min(types.length, 1 + Math.floor(fs / 2) + 1),
+                  )
+                ];
+              monsters.push({ x: mx, y: my, ...t, maxHp: t.hp, hit: 0 });
+            }
+          }
+          items = [];
+          for (let i = 0; i < 4 + Math.floor(Math.random() * 4); i++) {
+            const room = rooms[Math.floor(Math.random() * rooms.length)];
+            const ix = room.x + Math.floor(Math.random() * room.w),
+              iy = room.y + Math.floor(Math.random() * room.h);
+            if (
+              dungeon[iy][ix] === 0 &&
+              !(ix === player.x && iy === player.y)
+            ) {
+              if (Math.random() < 0.6)
+                items.push({
+                  x: ix,
+                  y: iy,
+                  type: "gold",
+                  value: 5 + Math.floor(Math.random() * 15 * player.floor),
+                });
+              else
+                items.push({
+                  x: ix,
+                  y: iy,
+                  type: "potion",
+                  value: 15 + Math.floor(Math.random() * 10),
+                });
+            }
+          }
+        }
+        function showMessage(msg) {
+          const el = document.getElementById("game-message");
+          el.textContent = msg;
+          el.style.color = "#d4a843";
+          setTimeout(() => {
+            el.style.color = "";
+          }, 800);
+        }
+        function updateHUD() {
+          document.getElementById("game-hp").textContent = player.hp;
+          document.getElementById("game-gold").textContent = player.gold;
+          document.getElementById("game-floor").textContent = player.floor;
+          document.getElementById("game-kills").textContent = player.kills;
+        }
+        function tryMove(dx, dy) {
+          const nx = player.x + dx,
+            ny = player.y + dy;
+          if (
+            nx < 0 ||
+            nx >= COLS ||
+            ny < 0 ||
+            ny >= ROWS ||
+            dungeon[ny][nx] === 1
+          )
+            return;
+          const mon = monsters.find((m) => m.x === nx && m.y === ny);
+          if (mon) {
+            const dmg = Math.max(1, player.atk - Math.floor(Math.random() * 3));
+            mon.hp -= dmg;
+            mon.hit = 8;
+            showMessage(`You hit the ${mon.name} for ${dmg} damage!`);
+            if (mon.hp <= 0) {
+              monsters = monsters.filter((m) => m !== mon);
+              player.kills++;
+              const xg = Math.floor(Math.random() * 10) + 5;
+              player.gold += xg;
+              showMessage(`You slew the ${mon.name}! (+${xg} gold)`);
+            } else {
+              const md = Math.max(1, mon.atk - player.def);
+              player.hp -= md;
+              damageFlash = 8;
+            }
+            attackDir = { x: dx, y: dy };
+            attackFrame = 8;
+            return;
+          }
+          player.x = nx;
+          player.y = ny;
+          const ii = items.findIndex((it) => it.x === nx && it.y === ny);
+          if (ii !== -1) {
+            const item = items[ii];
+            if (item.type === "gold") {
+              player.gold += item.value;
+              showMessage(`Found ${item.value} gold!`);
+            } else {
+              player.hp = Math.min(player.maxHp, player.hp + item.value);
+              showMessage(`Drank a potion! +${item.value} HP`);
+            }
+            items.splice(ii, 1);
+          }
+          if (nx === stairs.x && ny === stairs.y) {
+            player.floor++;
+            player.atk += 2;
+            player.def++;
+            player.maxHp += 10;
+            player.hp = Math.min(player.maxHp, player.hp + 20);
+            showMessage(`Descending to floor ${player.floor}...`);
+            generateDungeon();
+          }
+        }
+        function doAttack() {
+          let hit = false;
+          [
+            [-1, 0],
+            [1, 0],
+            [0, -1],
+            [0, 1],
+          ].forEach(([dx, dy]) => {
+            const m = monsters.find(
+              (m2) => m2.x === player.x + dx && m2.y === player.y + dy,
+            );
+            if (m) {
+              const d = Math.max(1, player.atk + Math.floor(Math.random() * 3));
+              m.hp -= d;
+              m.hit = 8;
+              hit = true;
+              showMessage(`You strike the ${m.name} for ${d}!`);
+              if (m.hp <= 0) {
+                monsters = monsters.filter((m2) => m2 !== m);
+                player.kills++;
+                player.gold += Math.floor(Math.random() * 10) + 5;
+              }
+            }
+          });
+          if (!hit) showMessage("You swing at the air...");
+          attackFrame = 8;
+        }
+        function moveMonsters() {
+          monsters.forEach((mon) => {
+            const dx = player.x - mon.x,
+              dy = player.y - mon.y,
+              dist = Math.abs(dx) + Math.abs(dy);
+            if (dist <= 6) {
+              let mx = 0,
+                my = 0;
+              if (Math.abs(dx) >= Math.abs(dy)) mx = dx > 0 ? 1 : -1;
+              else my = dy > 0 ? 1 : -1;
+              const nx = mon.x + mx,
+                ny = mon.y + my;
+              if (nx === player.x && ny === player.y) {
+                const md = Math.max(1, mon.atk - player.def);
+                player.hp -= md;
+                damageFlash = 8;
+                showMessage(`${mon.name} hits you for ${md}!`);
+              } else if (
+                nx >= 0 &&
+                nx < COLS &&
+                ny >= 0 &&
+                ny < ROWS &&
+                dungeon[ny][nx] === 0 &&
+                !monsters.some((m) => m !== mon && m.x === nx && m.y === ny)
+              ) {
+                mon.x = nx;
+                mon.y = ny;
+              }
+            }
+          });
+        }
+        function draw() {
+          ctx.fillStyle = "#0d0d0d";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          for (let y = 0; y < ROWS; y++)
+            for (let x = 0; x < COLS; x++) {
+              const px = x * TILE,
+                py = y * TILE,
+                dist = Math.abs(x - player.x) + Math.abs(y - player.y);
+              if (dist > 7) continue;
+              const b = Math.max(0, 1 - dist / 7);
+              ctx.globalAlpha = b;
+              if (dungeon[y][x] === 0) {
+                ctx.fillStyle =
+                  (x + y) % 2 === 0 ? COLORS.floor : COLORS.floorAlt;
+                ctx.fillRect(px, py, TILE, TILE);
+                ctx.fillStyle = "rgba(212,168,67,0.03)";
+                ctx.fillRect(px + 2, py + 2, TILE - 4, TILE - 4);
+              } else {
+                ctx.fillStyle = COLORS.wall;
+                ctx.fillRect(px, py, TILE, TILE);
+                ctx.fillStyle = COLORS.wallTop;
+                ctx.fillRect(px, py, TILE, TILE / 3);
+                ctx.fillStyle = "rgba(212,168,67,0.08)";
+                ctx.fillRect(px, py + TILE - 1, TILE, 1);
+              }
+              ctx.globalAlpha = 1;
+            }
+          const sd =
+            Math.abs(stairs.x - player.x) + Math.abs(stairs.y - player.y);
+          if (sd <= 7) {
+            ctx.globalAlpha = Math.max(0, 1 - sd / 7);
+            ctx.fillStyle = COLORS.stairs;
+            ctx.fillRect(stairs.x * TILE, stairs.y * TILE, TILE, TILE);
+            ctx.fillStyle = COLORS.stairsIcon;
+            ctx.font = "bold 20px serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(
+              "▼",
+              stairs.x * TILE + TILE / 2,
+              stairs.y * TILE + TILE / 2,
+            );
+            ctx.globalAlpha = 1;
+          }
+          items.forEach((item) => {
+            const id =
+              Math.abs(item.x - player.x) + Math.abs(item.y - player.y);
+            if (id > 7) return;
+            ctx.globalAlpha = Math.max(0, 1 - id / 7);
+            ctx.fillStyle = item.type === "gold" ? COLORS.gold : COLORS.potion;
+            ctx.font =
+              item.type === "gold" ? "bold 18px serif" : "bold 16px serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(
+              item.type === "gold" ? "✦" : "♥",
+              item.x * TILE + TILE / 2,
+              item.y * TILE + TILE / 2,
+            );
+            ctx.globalAlpha = 1;
+          });
+          monsters.forEach((mon) => {
+            const md = Math.abs(mon.x - player.x) + Math.abs(mon.y - player.y);
+            if (md > 7) return;
+            ctx.globalAlpha = Math.max(0, 1 - md / 7);
+            const mx = mon.x * TILE,
+              my = mon.y * TILE;
+            ctx.fillStyle = mon.hit > 0 ? "#ff4444" : mon.color;
+            ctx.beginPath();
+            ctx.arc(mx + TILE / 2, my + TILE / 2, TILE / 2 - 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = "#fff";
+            ctx.font = "bold 16px monospace";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(mon.char, mx + TILE / 2, my + TILE / 2);
+            if (mon.hp < mon.maxHp) {
+              const hp = mon.hp / mon.maxHp;
+              ctx.fillStyle = "rgba(0,0,0,0.6)";
+              ctx.fillRect(mx + 2, my - 3, TILE - 4, 3);
+              ctx.fillStyle =
+                hp > 0.5 ? "#4ade80" : hp > 0.25 ? "#f0c75e" : "#c0392b";
+              ctx.fillRect(mx + 2, my - 3, (TILE - 4) * hp, 3);
+            }
+            if (mon.hit > 0) mon.hit--;
+            ctx.globalAlpha = 1;
+          });
+          const ppx = player.x * TILE,
+            ppy = player.y * TILE;
+          let offX = 0,
+            offY = 0;
+          if (attackFrame > 0) {
+            const p = attackFrame / 8;
+            offX = attackDir.x * 6 * Math.sin(p * Math.PI);
+            offY = attackDir.y * 6 * Math.sin(p * Math.PI);
+            attackFrame--;
+          }
+          ctx.fillStyle = COLORS.shadow;
+          ctx.beginPath();
+          ctx.ellipse(
+            ppx + TILE / 2,
+            ppy + TILE - 4,
+            TILE / 3,
+            4,
+            0,
+            0,
+            Math.PI * 2,
+          );
+          ctx.fill();
+          ctx.fillStyle = damageFlash > 0 ? "#ff4444" : COLORS.player;
+          ctx.beginPath();
+          ctx.arc(
+            ppx + TILE / 2 + offX,
+            ppy + TILE / 2 - 2 + offY,
+            TILE / 2 - 4,
+            0,
+            Math.PI * 2,
+          );
+          ctx.fill();
+          ctx.strokeStyle = COLORS.playerOutline;
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.arc(
+            ppx + TILE / 2 + offX,
+            ppy + TILE / 2 - 2 + offY,
+            TILE / 2 - 4,
+            0,
+            Math.PI * 2,
+          );
+          ctx.stroke();
+          ctx.fillStyle = "#0d0d0d";
+          ctx.beginPath();
+          ctx.arc(
+            ppx + TILE / 2 - 4 + offX,
+            ppy + TILE / 2 - 5 + offY,
+            2,
+            0,
+            Math.PI * 2,
+          );
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(
+            ppx + TILE / 2 + 4 + offX,
+            ppy + TILE / 2 - 5 + offY,
+            2,
+            0,
+            Math.PI * 2,
+          );
+          ctx.fill();
+          if (damageFlash > 0) damageFlash--;
+          const hpPct = player.hp / player.maxHp;
+          ctx.fillStyle = "rgba(0,0,0,0.6)";
+          ctx.fillRect(ppx + 2, ppy - 6, TILE - 4, 4);
+          ctx.fillStyle =
+            hpPct > 0.5 ? "#4ade80" : hpPct > 0.25 ? "#f0c75e" : "#c0392b";
+          ctx.fillRect(ppx + 2, ppy - 6, (TILE - 4) * hpPct, 4);
+          if (gameState === "dead") {
+            ctx.fillStyle = "rgba(13,13,13,0.85)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#c0392b";
+            ctx.font = "bold 36px Cinzel, serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(
+              "YOU HAVE FALLEN",
+              canvas.width / 2,
+              canvas.height / 2 - 30,
+            );
+            ctx.fillStyle = "#d4a843";
+            ctx.font = "16px Crimson Text, serif";
+            ctx.fillText(
+              `Floor ${player.floor} · ${player.kills} kills · ${player.gold} gold`,
+              canvas.width / 2,
+              canvas.height / 2 + 10,
+            );
+            ctx.fillStyle = "#f5e6c8";
+            ctx.font = "14px Inter, sans-serif";
+            ctx.fillText(
+              "Press R to try again",
+              canvas.width / 2,
+              canvas.height / 2 + 45,
+            );
+          }
+          if (gameState === "waiting") {
+            ctx.fillStyle = "rgba(13,13,13,0.7)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#d4a843";
+            ctx.font = "bold 28px Cinzel, serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(
+              "GUILD PROVING GROUNDS",
+              canvas.width / 2,
+              canvas.height / 2 - 20,
+            );
+            ctx.fillStyle = "#f5e6c8";
+            ctx.font = "14px Inter, sans-serif";
+            ctx.fillText(
+              "Press any key to begin",
+              canvas.width / 2,
+              canvas.height / 2 + 20,
+            );
+          }
+        }
+        function gameLoop(ts) {
+          if (!lastTime) lastTime = ts;
+          const dt = ts - lastTime;
+          lastTime = ts;
+          if (gameState === "playing") {
+            moveTimer -= dt;
+            if (moveTimer <= 0) {
+              if (keys["ArrowUp"] || keys["KeyW"]) {
+                tryMove(0, -1);
+                moveTimer = MOVE_DELAY;
+              } else if (keys["ArrowDown"] || keys["KeyS"]) {
+                tryMove(0, 1);
+                moveTimer = MOVE_DELAY;
+              } else if (keys["ArrowLeft"] || keys["KeyA"]) {
+                tryMove(-1, 0);
+                moveTimer = MOVE_DELAY;
+              } else if (keys["ArrowRight"] || keys["KeyD"]) {
+                tryMove(1, 0);
+                moveTimer = MOVE_DELAY;
+              }
+            }
+            monsterMoveTimer -= dt;
+            if (monsterMoveTimer <= 0) {
+              moveMonsters();
+              monsterMoveTimer = MONSTER_MOVE_DELAY;
+            }
+            if (player.hp <= 0) {
+              player.hp = 0;
+              gameState = "dead";
+              showMessage("You have fallen...");
+            }
+            updateHUD();
+          }
+          draw();
+          requestAnimationFrame(gameLoop);
+        }
+        function startGame() {
+          player = {
+            x: 1,
+            y: 1,
+            hp: 100,
+            maxHp: 100,
+            gold: 0,
+            atk: 10,
+            def: 2,
+            kills: 0,
+            floor: 1,
+          };
+          generateDungeon();
+          gameState = "playing";
+          showMessage("You descend into the dungeon...");
+          updateHUD();
+        }
+        document.addEventListener("keydown", (e) => {
+          if (
+            document.activeElement &&
+            (document.activeElement.tagName === "INPUT" ||
+              document.activeElement.tagName === "SELECT" ||
+              document.activeElement.tagName === "TEXTAREA")
+          )
+            return;
+          keys[e.code] = true;
+          if (gameState === "waiting") {
+            startGame();
+            e.preventDefault();
+            return;
+          }
+          if (gameState === "dead" && e.code === "KeyR") {
+            startGame();
+            e.preventDefault();
+            return;
+          }
+          if (gameState === "playing" && e.code === "Space") {
+            doAttack();
+            e.preventDefault();
+          }
+          if (
+            [
+              "ArrowUp",
+              "ArrowDown",
+              "ArrowLeft",
+              "ArrowRight",
+              "Space",
+            ].includes(e.code)
+          ) {
+            const gs = document.getElementById("game").getBoundingClientRect();
+            if (gs.top < window.innerHeight && gs.bottom > 0)
+              e.preventDefault();
+          }
+        });
+        document.addEventListener("keyup", (e) => {
+          keys[e.code] = false;
+        });
+        window.mobileInput = function (dir) {
+          if (gameState === "waiting") {
+            startGame();
+            return;
+          }
+          if (gameState === "dead") {
+            startGame();
+            return;
+          }
+          if (dir === "up") tryMove(0, -1);
+          if (dir === "down") tryMove(0, 1);
+          if (dir === "left") tryMove(-1, 0);
+          if (dir === "right") tryMove(1, 0);
+          if (dir === "attack") doAttack();
+          updateHUD();
+        };
+        canvas.addEventListener("click", () => {
+          if (gameState === "waiting") startGame();
+        });
+        generateDungeon();
+        requestAnimationFrame(gameLoop);
+      })();
+
+      // =====================================================
+      // SCROLL ANIMATIONS
+      // =====================================================
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("fade-in-up");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll("section > div")
+        .forEach((el) => observer.observe(el));
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("header")
+          .classList.toggle("shadow-lg", window.scrollY > 50);
+      });
+    </script>
+  </body>
+</html>
